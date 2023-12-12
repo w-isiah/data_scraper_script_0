@@ -6,10 +6,12 @@ from urllib.error import URLError
 import csv
 
 #empty list for storing items
-items=[]
+all_items= []
 
 '''function for the scraper'''
 def data(url):
+
+	#error handling
 	try:
 		response = requests.get(url)
 	except HTTPError as error:
@@ -25,12 +27,15 @@ def data(url):
 		    cname =item.find('a',{'class':"listing__name--link listing__link jsListingName"}).text[2:]
 		    print('Company Name:',cname.strip())
 		    print('Çontact:',contact.strip())
-		    items.append({"Name": cname, "Contact": contact})
-		    keys=items[0].keys()
-		    with open('items.csv','w',newline='') as file:
-		    	dict_writer = csv.DictWriter(file, keys)
-		    	dict_writer.writeheader()
-		    	dict_writer.writerows(items)
 
+		    #appensing all the data into the empty list
+		    all_items.append({"Name":cname,"Contact":contact})
+		    keys=all_items[0].keys()
+
+		    #writign data to csv file
+		    with open('items.csv','w',newline='') as file:
+		    	dict_writer=csv.DictWriter(file, keys)
+		    	dict_writer.writeheader()
+		    	dict_writer.writerows(all_items)
 '''function calling'''
 data("https://www.yellowpages.ca/search/si/1/health+wellness/Toronto+ON")
