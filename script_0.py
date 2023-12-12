@@ -37,5 +37,6 @@ def data(url):
 		    	dict_writer=csv.DictWriter(file, keys)
 		    	dict_writer.writeheader()
 		    	dict_writer.writerows(all_items)
+	file.close()
 '''function calling'''
 data("https://www.yellowpages.ca/search/si/1/health+wellness/Toronto+ON")
