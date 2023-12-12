@@ -29,7 +29,7 @@ def data(url):
 		    print('Çontact:',contact.strip())
 
 		    #appensing all the data into the empty list
-		    all_items.append({"Name":cname,"Contact":contact})
+		    all_items.append({"Company Name":cname,"Contact":contact})
 		    keys=all_items[0].keys()
 
 		    #writign data to csv file
